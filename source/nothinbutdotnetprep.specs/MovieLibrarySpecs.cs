@@ -108,6 +108,26 @@ namespace nothinbutdotnetprep.specs
             It should_receive_a_set_containing_each_movie_in_the_library = () =>
                 all_movies.ShouldContainOnly(first_movie, second_movie);
         }
+        public class when_iterating : movie_library_concern
+        {
+            static Movie first_movie;
+            static Movie second_movie;
+            static IEnumerable<Movie> all_movies;
+
+            Establish c = () =>
+            {
+                Enumerable.Range(1, 100).each(x => movie_collection.Add(new Movie()));
+            };
+
+            Because b = () =>
+                all_movies = sut.all_movies();
+
+            It should_receive_a_set_containing_each_movie_in_the_library = () =>
+            {
+
+
+            };
+        }
 
         [Subject(typeof(MovieLibrary))]
         public class when_trying_to_change_the_set_of_movies_returned_by_the_movie_library_to_a_mutable_type :
@@ -130,6 +150,7 @@ namespace nothinbutdotnetprep.specs
                 spec.exception_thrown.ShouldBeAn<InvalidCastException>();
         }
 
+        
         [Subject(typeof(MovieLibrary))]
         public class when_adding_a_movie_to_the_library : movie_library_concern
         {
@@ -253,7 +274,7 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_sort_all_movies_by_title_descending = () =>
             {
-                var results = sut.sort_all_movies_by_title_descending;
+                var results = sut.sort_all_movies_by_title_descending();
 
                 results.ShouldContainOnlyInOrder(theres_something_about_mary, the_ring, shrek,
                                                  pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
