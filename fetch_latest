@@ -32,7 +32,7 @@ end
 
 def update_to_latest_branch_on(remote_name)
   `git add -A;git commit -m "Updated"`
-  `gitrb checkout master`
+  `git checkout master`
   `gitrb pull #{remote_name} #{get_latest_remote_branch_name(remote_name)} true`
 end
 
