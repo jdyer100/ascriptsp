@@ -34,17 +34,9 @@ namespace nothinbutdotnetprep.collections
             throw new NotImplementedException();
         }
 
-        IEnumerable<Movie> all_matching(MovieCriteria matches)
+        IEnumerable<Movie> all_matching(MovieCriteria criteria)
         {
-            foreach (var movie in movies)
-            {
-                if (matches(movie)) yield return movie;
-            }
-        }
-
-        public IEnumerable<Movie> all_movies_published_by_pixar()
-        {
-            return all_matching(movie => movie.production_studio == ProductionStudio.Pixar);
+            return movies.all_items_matching(criteria.Invoke);
         }
 
         public IEnumerable<Movie> all_movies_published_after(int year)
