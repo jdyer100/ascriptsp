@@ -35,32 +35,39 @@ namespace nothinbutdotnetprep.collections
             throw new NotImplementedException();
         }
 
+        private IList<Movie> all_movies_by_criteria(Criteria criteria)
+        {
+            IList<Movie> movies = new List<Movie>();
+            foreach (var movie in movies)
+            {
+                switch (criteria.CriteriaType)
+                {
+                    case Criteria.CriteriaTypes.ByGenre:
+                        if (movie.production_studio==criteria.Studio)
+                            movies.Add(movie);
+                        break;
+                    case Criteria.CriteriaTypes.ByYearRange:
+                        if (movie.date_published.Year>=criteria.DateFrom & movie.date_published.Year<=criteria.DateTo)
+                            movies.Add(movie);
+                        break;
+                    case Criteria.CriteriaTypes.AfterYear:
+                        if (movie.date_published.Year > criteria.Year)
+                            movies.Add(movie);
+                        break;
+                }             
+            }
+            return movies;
+
+        }
+
         public IEnumerable<Movie> all_movies_published_by_pixar()
         {
-            IList<Movie> pixarMovies = new List<Movie>();
-            foreach (Movie movie in movies)
-            {
-                if (movie.production_studio==ProductionStudio.Pixar)
-                {
-                    pixarMovies.Add(movie);
-                }
-            }
-
-            return pixarMovies;
+            return all_movies_by_criteria( new Criteria().ByProductionStudio(ProductionStudio.Pixar));
         }
 
         public IEnumerable<Movie> all_movies_published_after(int year)
         {
-            IList<Movie> afterMovies = new List<Movie>();
-            foreach (Movie movie in movies)
-            {
-                if (movie.date_published.Year > year)
-                {
-                    afterMovies.Add(movie);
-                }
-            }
-
-            return afterMovies;
+            return all_movies_by_criteria(new Criteria().AfterYear(year));
         }
 
         public IEnumerable<Movie> all_movies_published_between_years(int startingYear, int endingYear)
@@ -153,4 +160,55 @@ namespace nothinbutdotnetprep.collections
             throw new NotImplementedException();
         }
     }
+
+    public class Criteria
+    {
+        public enum CriteriaTypes
+        {
+            ByGenre,
+            ByYearRange,
+            AfterYear,
+            ByTitle,
+            ByStudio
+        }
+
+        public CriteriaTypes CriteriaType { get; private set; }
+        public Genre Genre { get; private set; }
+        public int DateFrom { get; private set; }
+        public int DateTo { get; private set; }
+        public int Year { get; private set; }
+        public ProductionStudio Studio { get; set; }
+
+        public Criteria ByGenre(Genre genre)
+        {
+            CriteriaType = CriteriaTypes.ByGenre;
+            Genre = genre;
+            return this;
+        }
+
+
+        public Criteria ByDateRange(int from, int to)
+        {
+            CriteriaType = CriteriaTypes.ByYearRange;
+            DateFrom = from;
+            DateTo = to;
+            return this;
+        }
+
+        public Criteria ByProductionStudio(ProductionStudio studio)
+        {
+            CriteriaType = CriteriaTypes.ByStudio;
+            Studio = studio;
+            return this;
+        }
+
+        public Criteria AfterYear(int year)
+        {
+            CriteriaType = CriteriaTypes.AfterYear;
+            Year = year;
+            return this;
+
+        }
+    }
+
 }
