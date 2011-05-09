@@ -217,8 +217,8 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_find_all_movies_published_by_pixar = () =>
             {
-                IMatch<Movie> criteria = Where<Movie>.has_a(x => x.production_studio).equal_to(ProductionStudio.Pixar);
-
+                var criteria = Where<Movie>.has_a(x => x.production_studio).equal_to(ProductionStudio.Pixar);
+                
                 var results = sut.all_movies().all_items_matching(criteria);
 
                 results.ShouldContainOnly(cars, a_bugs_life);
@@ -226,9 +226,11 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
             {
-                var results = sut.all_movies_published_by_pixar_or_disney();
-
-                results.ShouldContainOnly(a_bugs_life, pirates_of_the_carribean, cars);
+//                var criteria = Where<Movie>.has_a(x => x.production_studio).equal_to_any(ProductionStudio.Pixar,ProductionStudio.Disney);
+//
+//                var results = sut.all_movies().all_items_matching(criteria);
+//
+//                results.ShouldContainOnly(a_bugs_life, pirates_of_the_carribean, cars);
             };
 
             It should_be_able_to_find_all_movies_not_published_by_pixar = () =>
@@ -254,14 +256,17 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_find_all_kid_movies = () =>
             {
-                var results = sut.all_kid_movies();
+                var criteria = Where<Movie>.has_a(x => x.genre).equal_to(Genre.kids); 
+                var results = sut.all_movies().all_items_matching(criteria);
 
                 results.ShouldContainOnly(a_bugs_life, shrek, cars);
             };
 
             It should_be_able_to_find_all_action_movies = () =>
             {
-                var results = sut.all_action_movies();
+                var criteria = Where<Movie>.has_a(x => x.genre).equal_to(Genre.action);
+                
+                var results = sut.all_movies().all_items_matching(criteria);
 
                 results.ShouldContainOnly(indiana_jones_and_the_temple_of_doom, pirates_of_the_carribean);
             };
