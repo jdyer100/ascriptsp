@@ -71,6 +71,7 @@
     <Compile Include="utility\AnonymousCriteria.cs" />
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
+    <Compile Include="utility\ICreateMatchers.cs" />
     <Compile Include="utility\IMatch.cs" />
     <Compile Include="utility\MatchComparerFactory.cs" />
     <Compile Include="utility\MatchFactory.cs" />

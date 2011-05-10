@@ -2,7 +2,7 @@
 
 namespace nothinbutdotnetprep.utility
 {
-    public class MatchFactory<ItemToCreateCriteriaFor, PropertyType>
+    public class MatchFactory<ItemToCreateCriteriaFor, PropertyType> : ICreateMatchers<ItemToCreateCriteriaFor, PropertyType>
     {
         PropertyAccessor<ItemToCreateCriteriaFor, PropertyType> accessor;
 

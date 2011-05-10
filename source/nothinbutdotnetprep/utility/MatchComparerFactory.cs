@@ -3,13 +3,15 @@
 namespace nothinbutdotnetprep.utility
 {
     public class MatchComparerFactory<ItemToCreateCriteriaFor, PropertyType>
-        where PropertyType : IComparable<PropertyType>
+        : ICreateMatchers<ItemToCreateCriteriaFor,PropertyType> where PropertyType : IComparable<PropertyType>
     {
         PropertyAccessor<ItemToCreateCriteriaFor, PropertyType> accessor;
+        ICreateMatchers<ItemToCreateCriteriaFor, PropertyType> original;
 
-        public MatchComparerFactory(PropertyAccessor<ItemToCreateCriteriaFor, PropertyType> accessor)
+        public MatchComparerFactory(PropertyAccessor<ItemToCreateCriteriaFor, PropertyType> accessor, ICreateMatchers<ItemToCreateCriteriaFor, PropertyType> original)
         {
             this.accessor = accessor;
+            this.original = original;
         }
 
         public IMatch<ItemToCreateCriteriaFor> greater_than(PropertyType value)
@@ -33,18 +35,17 @@ namespace nothinbutdotnetprep.utility
 
         public IMatch<ItemToCreateCriteriaFor> equal_to(PropertyType value)
         {
-            return (new MatchFactory<ItemToCreateCriteriaFor, PropertyType>(accessor)).equal_to(value);
+            return original.equal_to(value);
         }
 
         public IMatch<ItemToCreateCriteriaFor> equal_to_any(params PropertyType[] potential_values)
         {
-            return (new MatchFactory<ItemToCreateCriteriaFor, PropertyType>(accessor)).equal_to_any(potential_values);
+            return original.equal_to_any(potential_values);
         }
 
         public IMatch<ItemToCreateCriteriaFor> not_equal_to(PropertyType value)
         {
-            return (new MatchFactory<ItemToCreateCriteriaFor, PropertyType>(accessor)).not_equal_to(value);
+            return original.not_equal_to(value);
         }
- 
     }
 }
