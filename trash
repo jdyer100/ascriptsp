@@ -1,1 +1,3 @@
-gitrb reset
+#!/usr/bin/env ruby
+
+`gitrb reset`
