@@ -10,7 +10,7 @@ namespace nothinbutdotnetprep.utility
         }
 
         public static MatchFactory<ItemToMatch, PropertyType> has_a<PropertyType>(
-            PropertyAccessor<ItemToMatch, PropertyType> accessor)
+            PropertyAccessor<ItemToMatch, PropertyType> accessor) 
         {
             return new MatchFactory<ItemToMatch, PropertyType>(accessor);
         }
