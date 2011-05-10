@@ -19,7 +19,7 @@ namespace nothinbutdotnetprep.utility
         public IMatch<ItemToCreateCriteriaFor> equal_to_any(params PropertyType[] potential_values)
         {
             return
-                new AnonymousCriteria<ItemToCreateCriteriaFor>(
+                AnonymousCriteria<ItemToCreateCriteriaFor>.Create(
                     x => new List<PropertyType>(potential_values).Contains(accessor(x)));
         }
 
