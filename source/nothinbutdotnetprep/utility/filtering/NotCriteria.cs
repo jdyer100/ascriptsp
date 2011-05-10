@@ -1,4 +1,4 @@
-namespace nothinbutdotnetprep.utility
+namespace nothinbutdotnetprep.utility.filtering
 {
     public class NotCriteria<ItemToMatch> : IMatch<ItemToMatch>
     {

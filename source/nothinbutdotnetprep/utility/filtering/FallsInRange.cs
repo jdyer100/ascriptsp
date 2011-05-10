@@ -1,7 +1,7 @@
 using System;
 using nothinbutdotnetprep.utility.ranges;
 
-namespace nothinbutdotnetprep.utility
+namespace nothinbutdotnetprep.utility.filtering
 {
     public class FallsInRange<T> : IMatch<T> where T : IComparable<T>
     {

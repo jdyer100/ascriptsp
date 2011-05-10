@@ -1,6 +1,6 @@
 using System;
 
-namespace nothinbutdotnetprep.utility
+namespace nothinbutdotnetprep.utility.filtering
 {
     public class IsBetween<T> : IMatch<T> where T : IComparable<T>
     {

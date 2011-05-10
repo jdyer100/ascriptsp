@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using nothinbutdotnetprep.utility;
+using nothinbutdotnetprep.utility.filtering;
 
 namespace nothinbutdotnetprep.collections
 {
@@ -34,42 +35,6 @@ namespace nothinbutdotnetprep.collections
             throw new NotImplementedException();
         }
 
-        IEnumerable<Movie> all_matching(MovieCriteria criteria)
-        {
-            return movies.all_items_matching(criteria.Invoke);
-        }
-
-        public IEnumerable<Movie> all_movies_published_after(int year)
-        {
-            return all_matching(movie => movie.date_published.Year > year);
-        }
-
-        public IEnumerable<Movie> all_movies_published_between_years(int startingYear, int endingYear)
-        {
-            return all_matching(movie => movie.date_published.Year >= startingYear &&
-                movie.date_published.Year <= endingYear);
-        }
-
-        public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
-        {
-            return all_matching(movie => movie.production_studio == ProductionStudio.Disney ||
-                movie.production_studio == ProductionStudio.Pixar);
-        }
-
-        public IEnumerable<Movie> all_kid_movies()
-        {
-            return all_matching(movie => movie.genre == Genre.kids);
-        }
-
-        public IEnumerable<Movie> all_action_movies()
-        {
-            return all_matching(movie => movie.genre == Genre.action);
-        }
-
-        public IEnumerable<Movie> all_movies_not_published_by_pixar()
-        {
-            return all_matching(movie => movie.production_studio != ProductionStudio.Pixar);
-        }
 
         public IEnumerable<Movie> sort_all_movies_by_title_ascending
         {

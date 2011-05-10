@@ -7,6 +7,7 @@ using nothinbutdotnetprep.collections;
 using nothinbutdotnetprep.tests.utility;
 using System.Linq;
 using nothinbutdotnetprep.utility;
+using nothinbutdotnetprep.utility.filtering;
 
 /* The following set of Context/Specification pairs are in place to specify the functionality that you need to complete for the MovieLibrary class.
  * MovieLibrary is an aggregate root for the Movie class. it exposes the ability to search,sort, and iterate over all of the movies that it aggregates.
@@ -244,16 +245,15 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
             {
-                var criteria = Where<Movie>.has_an(x => x.date_published.Year).greater_than(2004);
+                var criteria = Where<Movie>.has_a(x => x.date_published).greater_than_year(2004);
                 var results = sut.all_movies().all_items_matching(criteria);
-                //var results = sut.all_movies_published_after(2004);
 
                 results.ShouldContainOnly(the_ring, shrek, theres_something_about_mary);
             };
 
             It should_be_able_to_find_all_movies_published_between_a_certain_range_of_years = () =>
             {
-                var criteria = Where<Movie>.has_an(x => x.date_published.Year).between(1982,2003);
+                var criteria = Where<Movie>.has_a(x => x.date_published.Year).between(1982,2003);
                 var results = sut.all_movies().all_items_matching(criteria);
                 results.ShouldContainOnly(indiana_jones_and_the_temple_of_doom, a_bugs_life, pirates_of_the_carribean);
             };

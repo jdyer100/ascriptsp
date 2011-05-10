@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using nothinbutdotnetprep.utility.filtering;
 
 namespace nothinbutdotnetprep.utility
 {
@@ -9,7 +10,7 @@ namespace nothinbutdotnetprep.utility
             foreach (var item in items) yield return item;
         }
 
-        public static IEnumerable<ItemToMatch> all_items_matching<ItemToMatch>(this IEnumerable<ItemToMatch> items,Condition<ItemToMatch> criteria)
+        static IEnumerable<ItemToMatch> all_items_matching<ItemToMatch>(this IEnumerable<ItemToMatch> items,Condition<ItemToMatch> criteria)
         {
             foreach (var item in items)
             {
