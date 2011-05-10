@@ -30,5 +30,21 @@ namespace nothinbutdotnetprep.utility
                 return value.CompareTo(start) >= 0 && value.CompareTo(end) <= 0;
             });
         }
+
+        public IMatch<ItemToCreateCriteriaFor> equal_to(PropertyType value)
+        {
+            return (new MatchFactory<ItemToCreateCriteriaFor, PropertyType>(accessor)).equal_to(value);
+        }
+
+        public IMatch<ItemToCreateCriteriaFor> equal_to_any(params PropertyType[] potential_values)
+        {
+            return (new MatchFactory<ItemToCreateCriteriaFor, PropertyType>(accessor)).equal_to_any(potential_values);
+        }
+
+        public IMatch<ItemToCreateCriteriaFor> not_equal_to(PropertyType value)
+        {
+            return (new MatchFactory<ItemToCreateCriteriaFor, PropertyType>(accessor)).not_equal_to(value);
+        }
+ 
     }
 }
