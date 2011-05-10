@@ -71,12 +71,19 @@
     <Compile Include="utility\AnonymousCriteria.cs" />
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
+    <Compile Include="utility\FallsInRange.cs" />
     <Compile Include="utility\ICreateMatchers.cs" />
     <Compile Include="utility\IMatch.cs" />
+    <Compile Include="utility\IsBetween.cs" />
+    <Compile Include="utility\IsEqualToAny.cs" />
+    <Compile Include="utility\IsGreaterThan.cs" />
     <Compile Include="utility\MatchComparerFactory.cs" />
     <Compile Include="utility\MatchFactory.cs" />
     <Compile Include="utility\NotCriteria.cs" />
     <Compile Include="utility\PropertyAccessor.cs" />
+    <Compile Include="utility\PropertyCriteria.cs" />
+    <Compile Include="utility\ranges\IContainARangeOfValues.cs" />
+    <Compile Include="utility\ranges\InclusiveRange.cs" />
     <Compile Include="utility\Where.cs" />
   </ItemGroup>
   <ItemGroup>

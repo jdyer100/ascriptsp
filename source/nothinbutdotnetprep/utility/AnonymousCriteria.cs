@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace nothinbutdotnetprep.utility
 {
     public class AnonymousCriteria<ItemToMatch> : IMatch<ItemToMatch>
@@ -16,9 +14,5 @@ namespace nothinbutdotnetprep.utility
             return condition(item);
         }
 
-        public static IMatch<ItemToMatch> Create(Condition<ItemToMatch> condition)
-        {
-            return new AnonymousCriteria<ItemToMatch>(condition);
-        }
     }
 }

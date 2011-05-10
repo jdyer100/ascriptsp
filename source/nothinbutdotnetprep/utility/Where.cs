@@ -6,7 +6,7 @@ namespace nothinbutdotnetprep.utility
         public static MatchComparerFactory<ItemToMatch, TPropertyType> has_an<TPropertyType>(
      PropertyAccessor<ItemToMatch, TPropertyType> accessor) where TPropertyType : IComparable<TPropertyType>
         {
-            return new MatchComparerFactory<ItemToMatch, TPropertyType>(accessor,has_a(accessor));
+            return new MatchComparerFactory<ItemToMatch, TPropertyType>(has_a(accessor));
         }
 
         public static MatchFactory<ItemToMatch, PropertyType> has_a<PropertyType>(
