@@ -6,20 +6,34 @@ namespace nothinbutdotnetprep.utility
         ICreateMatchers<ItemToCreateCriteriaFor, PropertyType>
     {
         PropertyAccessor<ItemToCreateCriteriaFor, PropertyType> accessor;
+        private bool flipSense = false;
 
         public MatchFactory(PropertyAccessor<ItemToCreateCriteriaFor, PropertyType> accessor)
         {
             this.accessor = accessor;
         }
 
-        public object not
+        public MatchFactory<ItemToCreateCriteriaFor, PropertyType> not
         {
-            get { throw new NotImplementedException(); }
+            get 
+            { 
+                flipSense = ! flipSense;
+                return this;
+            }
         }
 
         public IMatch<ItemToCreateCriteriaFor> equal_to(PropertyType value)
         {
-            return equal_to_any(value);
+            IMatch<ItemToCreateCriteriaFor> retval;
+            if (flipSense)
+            {
+                flipSense = !flipSense;
+                retval = not_equal_to(value);
+                flipSense = !flipSense;
+            }
+            else
+             retval = equal_to_any(value);
+            return retval;
         }
 
         public IMatch<ItemToCreateCriteriaFor> equal_to_any(params PropertyType[] potential_values)
@@ -29,7 +43,16 @@ namespace nothinbutdotnetprep.utility
 
         public IMatch<ItemToCreateCriteriaFor> not_equal_to(PropertyType value)
         {
-            return new NotCriteria<ItemToCreateCriteriaFor>(equal_to(value));
+            IMatch<ItemToCreateCriteriaFor> retval;
+            if (flipSense)
+            {
+                flipSense = !flipSense;
+                retval = equal_to(value);
+                flipSense = !flipSense;
+            }
+            else
+                retval = new NotCriteria<ItemToCreateCriteriaFor>(equal_to(value));
+            return retval;
         }
 
         public IMatch<ItemToCreateCriteriaFor> create_matcher_for(IMatch<PropertyType> discrete_matcher)
