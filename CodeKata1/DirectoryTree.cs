@@ -25,7 +25,7 @@ namespace CodeKata1
         {
             foreach (var fileName in Directory.EnumerateFiles(directoryPath))
             {
-                Console.WriteLine(indentation + fileName);
+                Console.WriteLine(indentation + fileName.Split('.')[0]);
             }
         }
     }

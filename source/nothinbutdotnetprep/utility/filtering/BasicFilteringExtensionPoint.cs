@@ -5,7 +5,6 @@ namespace nothinbutdotnetprep.utility.filtering
     public interface IProvideAccessToFilteringBehaviours<ItemToFilter, PropertyType>
     {
         IMatch<ItemToFilter> create_using(IMatch<PropertyType> matcher);
-
     }
 
     public class BasicFilteringExtensionPoint<ItemToFilter, PropertyType> : IProvideAccessToFilteringBehaviours<ItemToFilter, PropertyType>
