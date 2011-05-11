@@ -1,0 +1,5 @@
+C:\nbdn\prep\CodeKata1\bin\Debug\CodeKata1.exe
+C:\nbdn\prep\CodeKata1\bin\Debug\CodeKata1.pdb
+C:\nbdn\prep\CodeKata1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\nbdn\prep\CodeKata1\obj\x86\Debug\CodeKata1.exe
+C:\nbdn\prep\CodeKata1\obj\x86\Debug\CodeKata1.pdb
