@@ -8,7 +8,9 @@ namespace CodeKata1
 {
     public class DirectoryTree
     {
-        private string indentation = @" ";
+        private const string directoryIndicator = @"+ ";
+        private const string indentation =        @"  ";
+
         public DirectoryTree(string filePath)
         {
             FilePath = filePath;
@@ -16,17 +18,30 @@ namespace CodeKata1
 
         public string FilePath { get; set; }
 
+        public string Indentor { get; set; }
+
         public void PrintTree()
         {
-            DisplayFileName(FilePath);
+            Console.WriteLine("Tree for: " + FilePath);
+
+            Indentor = indentation;
+            foreach (var directoryName in Directory.EnumerateDirectories(FilePath))
+            {
+                Console.WriteLine(Indentor + directoryIndicator +
+                    directoryName.Substring(directoryName.LastIndexOf('\\') + 1));
+                Indentor += indentation;
+                DisplayFileNames(directoryName);
+                Indentor = Indentor.Substring(0, Indentor.Length - indentation.Length);
+            }
         }
 
-        private void DisplayFileName(string directoryPath)
+        private void DisplayFileNames(string directoryPath)
         {
             foreach (var fileName in Directory.EnumerateFiles(directoryPath))
             {
-                Console.WriteLine(indentation + fileName.Split('.')[0]);
+                Console.WriteLine(Indentor + indentation + fileName.Substring(fileName.LastIndexOf('\\')+1));
             }
         }
+
     }
 }

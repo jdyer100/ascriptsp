@@ -9,7 +9,7 @@ namespace CodeKata1
     {
         static void Main(string[] args)
         {
-            DirectoryTree directoryTree = new DirectoryTree(@"c:\nbdn\prep");
+            DirectoryTree directoryTree = new DirectoryTree(@"c:\nbdn");
             directoryTree.PrintTree();
             Console.Read();
         }
